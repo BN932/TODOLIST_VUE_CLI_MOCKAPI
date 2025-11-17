@@ -1,4 +1,7 @@
 <script setup>
+  const props = defineProps({
+    todo: Object,
+  })
 </script>
 <template>
     <li class="px-4 py-3 sm:px-5" role="listitem">
@@ -7,15 +10,15 @@
               <input
                 id="t1"
                 type="checkbox"
-                class="h-4 w-4 text-blue-600 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                class="h-4 w-4 text-blue-600 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" v-model="todo.completed"
               />
-              <label for="t1" class="flex-1 text-slate-800 cursor-pointer">
-                Buy milk
+              <label for="t1" class="flex-1 cursor-pointer" :class="{'line-through text-slate-300' :todo.completed}">
+                {{todo.content}}
               </label>
               <button
               class="text-red-600/90 hover:text-red-700 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded"
               aria-label="Delete task"
-              title="Delete">
+              title="Delete" @click="$emit('deleteTodo')">
               ✕
             </button>
             </div>

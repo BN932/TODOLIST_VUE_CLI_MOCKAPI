@@ -1,7 +1,16 @@
 <script setup>
+import { reactive, onMounted } from "vue";
     import TodoListAddForm from './TodoListAddForm.vue';
     import TodoListFooter from './TodoListFooter.vue';
     import Todo from './Todo.vue';
+    import DB from "@/services/DB";
+
+    const todos = reactive([]);
+    onMounted (async () => {
+      DB.setapiURL('https://68ad9558a0b85b2f2cf3e221.mockapi.io/');
+      todos.splice(todos.length, 0, ...await DB.findAll());
+      console.table(todos);
+    });
 </script>
 <template><main class="w-full max-w-xl mt-10 bg-slate-300 rounded-xl">
       <!-- CARD LISTE -->
@@ -14,7 +23,7 @@
         <!-- LISTE DES TODOS -->
         <ul class="m-4 divide-y divide-slate-200" role="list" aria-label="Todos">
           <!-- ITEM (exemple) -->
-          <todo/>
+          <todo v-for="todo in todos" :key="todo.id" :todo=todo @deleteTodo="console.log('Delete this todo')" />
 
           <!-- Message si aucun todo (à gérer en Vue) -->
           <li

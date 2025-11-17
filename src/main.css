@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+body {
+    @apply min-h-full flex flex-col items-center bg-slate-700 text-slate-600;
+}
+
+main {
+    @apply w-full max-w-xl mt-10 bg-slate-300 rounded-xl
+}

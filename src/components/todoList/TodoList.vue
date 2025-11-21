@@ -3,13 +3,13 @@ import { reactive, onMounted } from "vue";
     import TodoListAddForm from './TodoListAddForm.vue';
     import TodoListFooter from './TodoListFooter.vue';
     import Todo from './Todo.vue';
-    import DB from "@/services/DB";
+    import { DB } from '@/services/DB.js';
 
     const todos = reactive([]);
     onMounted (async () => {
       DB.setapiURL('https://68ad9558a0b85b2f2cf3e221.mockapi.io/');
+      
       todos.splice(todos.length, 0, ...await DB.findAll());
-      console.table(todos);
     });
 </script>
 <template><main class="w-full max-w-xl mt-10 bg-slate-300 rounded-xl">
@@ -19,11 +19,14 @@ import { reactive, onMounted } from "vue";
         aria-labelledby="todo-heading"
       >
         <h2 id="todo-heading" class="sr-only">Todo list</h2>
-        <todoListAddForm/>
+        <todoListAddForm @onSubmitNewTodo="DB.addOne"/>
         <!-- LISTE DES TODOS -->
         <ul class="m-4 divide-y divide-slate-200" role="list" aria-label="Todos">
           <!-- ITEM (exemple) -->
-          <todo v-for="todo in todos" :key="todo.id" :todo=todo @deleteTodo="console.log('Delete this todo')" />
+          <todo v-for="todo in todos" :key="todo.id" :todo=todo 
+          @onDelete="DB.deleteOneById"
+          @onToggle="DB.updateOneById"
+          @onUpdate="DB.updateOneById" />
 
           <!-- Message si aucun todo (à gérer en Vue) -->
           <li

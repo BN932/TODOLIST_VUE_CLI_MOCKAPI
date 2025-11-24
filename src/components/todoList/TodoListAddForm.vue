@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+  import { ref } from "vue";
+  let content = ref("")
+</script>
 <template>
     <!-- INPUT PRINCIPAL -->
         <div class="border-b border-slate-200 bg-slate-50 py-3 px-4 sm:p-5">
@@ -14,7 +17,7 @@
             <button
               type="submit"
               class="shrink-0 px-4 py-3 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-              @click="$emit('onSubmitNewTodo', content)"
+              @click="$emit('onSubmitNewTodo', content); content=''"
             >
               Add
             </button>

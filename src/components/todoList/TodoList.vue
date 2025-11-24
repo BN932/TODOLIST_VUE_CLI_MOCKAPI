@@ -20,14 +20,14 @@
         aria-labelledby="todo-heading"
       >
         <h2 id="todo-heading" class="sr-only">Todo list</h2>
-        <todoListAddForm @onSubmitNewTodo="DB.addOne"/>
+        <todoListAddForm @onSubmitNewTodo="DB.addOne($event)"/>
         <!-- LISTE DES TODOS -->
         <ul class="m-4 divide-y divide-slate-200" role="list" aria-label="Todos">
           <!-- ITEM (exemple) -->
           <todo v-for="todo in DB.todos" :key="todo.id" :todo=todo 
-          @onDelete="DB.deleteOneById"
-          @onToggle="DB.updateOneById"
-          @onUpdate="DB.updateOneById" />
+          @onDelete="DB.deleteOneById($event)"
+          @onToggle="DB.updateOneById($event)"
+          @onUpdate="DB.updateOneById($event)" />
 
           <!-- Message si aucun todo (à gérer en Vue) -->
           <li

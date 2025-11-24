@@ -1,5 +1,4 @@
 import { reactive, ref } from "vue";
-import TodoList from "@/components/todoList/TodoList.vue";
 export const DB = reactive({
     isLoading : ref(true),
     async setapiURL (data){

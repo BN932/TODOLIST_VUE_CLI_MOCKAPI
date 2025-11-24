@@ -4,8 +4,11 @@
     import TodoListFooter from './TodoListFooter.vue';
     import Todo from './Todo.vue';
     import { DB } from '@/services/DB.js';
+    const props = defineProps({
+      apiURL: {type: String, required: true},
+    })
     onMounted (async () => {
-      DB.setapiURL('https://68ad9558a0b85b2f2cf3e221.mockapi.io/');
+      DB.setapiURL(props.apiURL);
       
       DB.todos.splice(DB.todos.length, 0, ...await DB.findAll());
     });

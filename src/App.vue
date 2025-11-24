@@ -8,7 +8,7 @@
 <template>
   <appHeader/>
   <main>
-    <TodoList/>
+    <TodoList apiURL="https://68ad9558a0b85b2f2cf3e221.mockapi.io/"/>
   </main>
   <appFooter/>
 </template>

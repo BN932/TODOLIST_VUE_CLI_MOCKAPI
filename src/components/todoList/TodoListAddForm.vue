@@ -3,7 +3,8 @@
   const emits = defineEmits(["onSubmitNewTodo"]);
   const content = ref("");
   const onSubmitAddForm = () => {
-    emits('onSubmitNewTodo', content.value)
+    emits('onSubmitNewTodo', content.value);
+    content.value = "";
   }
 </script>
 <template>
